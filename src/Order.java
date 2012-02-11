@@ -8,6 +8,19 @@ public class Order {
 	private String timeCooked;
 	private String cashierName;
 	private String cookName;
+	private String cashierAddress;
+	private int cashierPort;
+	
+	public Order(String name, String address, int port){
+		Order.nextOrderID = Order.nextOrderID+1;
+		orderID = nextOrderID;
+		cashierName = name;
+		Calendar getTime = Calendar.getInstance();
+		timePlaced = timeToString(getTime);
+		timeCooked = null;
+		setCashierAddress(address);
+		setCashierPort(port);
+	}
 	
 	public Order(String name){
 		Order.nextOrderID = Order.nextOrderID+1;
@@ -101,6 +114,22 @@ public class Order {
 	public String reBuildOrder(String signature){
 		//TODO loop through and string splitting by spaces and build an arraylist of parts check arraylist size if correct assign to new order structure.
 		return null;
+	}
+
+	public String getCashierAddress() {
+		return cashierAddress;
+	}
+
+	public void setCashierAddress(String cashierAddress) {
+		this.cashierAddress = cashierAddress;
+	}
+
+	public int getCashierPort() {
+		return cashierPort;
+	}
+
+	public void setCashierPort(int cashierPort) {
+		this.cashierPort = cashierPort;
 	}
 
 }

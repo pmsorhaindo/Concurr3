@@ -21,7 +21,7 @@ public class Listener implements Runnable {
 			String input;
 			while ((input=in.readLine())!=null)
 			{
-				System.out.println("Cheese!");
+				System.out.println("Cheese! " + input);
 			}
 			
 		} catch (IOException e) {

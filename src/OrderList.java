@@ -32,6 +32,14 @@ public class OrderList{
 		notifyAll();
 		return newOrder;
 	}
+	
+	synchronized public Order addOrder(String cashierName, String cashierAddress, int cashierPort)
+	{
+		Order newOrder = new Order(cashierName, cashierAddress, cashierPort);
+		ordersList.add(newOrder);
+		notifyAll();
+		return newOrder;
+	}
 	 
 	 /**
 	  * Removing an order from the list. The thread accessing this method  

@@ -7,6 +7,8 @@ public class KitchenComm {
 	private OrderList kitchen;
 	private String input = "";
 	private String author = "";
+	private String authorAddress = "";
+	private int authorPort = 0;
 	String theOutput = "";
 	/**
 	 * TODO
@@ -78,6 +80,14 @@ public class KitchenComm {
     		theOutput = tempOrder.deConstructOrder();
     		
         	break;
+        
+    	case 5:
+    		
+    		parseAuthorSocket();
+    		
+    		tempOrder = kitchen.addOrder(author,authorAddress,authorPort);
+    		
+    		break;
 
     	}
     }
@@ -102,6 +112,14 @@ public class KitchenComm {
     		 }
     	 }
     }
+	
+	public void parseAuthorSocket(){
+		input.substring(0,getNextStarPos(input));//order ID
+    	input = input.substring((getNextStarPos(input)+1),input.length());
+    	author =  input.substring(0,getNextStarPos(input));
+    	input = input.substring((getNextStarPos(input)+1),input.length());
+    	orderID = Integer.parseInt(input);
+	}
 	
 	public void parseOrderID() {
 		input.substring(0,getNextStarPos(input));

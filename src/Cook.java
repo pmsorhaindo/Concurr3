@@ -30,7 +30,7 @@ public class Cook implements Runnable {
 			    out = new PrintStream(cookSocket.getOutputStream());
 			    in = new BufferedReader(new InputStreamReader(cookSocket.getInputStream()));
 				this.cookOrder();
-				String input = "";
+				//String input = "";
 				Thread.sleep(0);
 			} catch(InterruptedException e){
 				System.out.println("Cook "+cookName+" is signing off.. (the cook wasn't holding any orders at the time)");
@@ -63,7 +63,13 @@ public class Cook implements Runnable {
 			}
 			out.print("3*" + getCookName()+"*"+ recievedOrderID +"\n");
 			if ((input = in.readLine()) != null){
-			System.out.println("Cook: " + parseOrderCompleteReturn(input));
+			//System.out.println("Cook: " + parseOrderCompleteReturn(input));
+			
+			//Parse Order for Cashier details
+			InetAddress targetAddress = null; //TODO
+			int targetPort = 0; //TODO
+			Writer toCashier = new Writer(targetAddress,targetPort);
+			
 			}
 		}catch(InterruptedException e)
 		{
@@ -99,6 +105,11 @@ public class Cook implements Runnable {
 		orderPlaced = orderPlaced + " at " + timeCooked;
 		return orderPlaced;
    	 }
+	
+	public String parseCashierDetails() {
+		//TODO
+		return null;
+	}
 	
 	public int getNextStarPos(String input){
 		for (int i = 0; i<input.length(); i++){

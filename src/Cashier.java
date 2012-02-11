@@ -16,8 +16,20 @@ public class Cashier implements Runnable {
 	private int listenPort;
 	private boolean onDuty;
 	
+	Listener cashierListener;
+	
 	public Cashier(String nameText,String newServerAddress, String newServerPort){
 		setCashierName(nameText);
+		try {
+			setCashierAddress(InetAddress.getLocalHost());
+			
+		} catch (UnknownHostException e1) {
+			e1.printStackTrace();
+		}
+		
+		cashierListener = new Listener(Cashier.nextPort);
+		setListenPort(Cashier.nextPort); 
+		Cashier.nextPort ++;
 		onDuty=true;
 		//setKitchen(kitchenName);
 		serverPort=Integer.parseInt(newServerPort);
@@ -50,7 +62,8 @@ public class Cashier implements Runnable {
 					System.out.println("Cashier " + cashierName + " is logging off...");
 					onDuty=false;
 				}			
-					out.print("1*"+ getCashierName() + "\n");
+					out.print("5*"+ getCashierName() + "*" + getCashierAddress() + "*"
+							+ getListenPort()  + "\n");
 
 					String input;
 					if ((input = in.readLine()) != null){
@@ -112,6 +125,22 @@ public class Cashier implements Runnable {
    		 }
    	 }
 		return 0;
+	}
+
+	public InetAddress getCashierAddress() {
+		return cashierAddress;
+	}
+
+	public void setCashierAddress(InetAddress cashierAddress) {
+		this.cashierAddress = cashierAddress;
+	}
+
+	public int getListenPort() {
+		return listenPort;
+	}
+
+	public void setListenPort(int listenPort) {
+		this.listenPort = listenPort;
 	}
 }
 	
