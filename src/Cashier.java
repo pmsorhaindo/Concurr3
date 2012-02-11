@@ -29,6 +29,7 @@ public class Cashier implements Runnable {
 		cashierListener = new Listener(Cashier.nextPort);
 		setListenPort(Cashier.nextPort); 
 		Cashier.nextPort ++;
+		cashierListener.run();
 		onDuty=true;
 		
 		serverPort=Integer.parseInt(newServerPort);
