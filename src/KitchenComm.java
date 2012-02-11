@@ -86,7 +86,7 @@ public class KitchenComm {
     		parseAuthorSocket();
     		
     		tempOrder = kitchen.addOrder(author,authorAddress,authorPort);
-    		
+    		theOutput = tempOrder.deConstructOrder();
     		break;
 
     	}
@@ -118,7 +118,9 @@ public class KitchenComm {
     	input = input.substring((getNextStarPos(input)+1),input.length());
     	author =  input.substring(0,getNextStarPos(input));
     	input = input.substring((getNextStarPos(input)+1),input.length());
-    	orderID = Integer.parseInt(input);
+    	authorAddress = input.substring(0,getNextStarPos(input));
+    	input = input.substring((getNextStarPos(input)+1),input.length());
+    	authorPort = Integer.parseInt(input);
 	}
 	
 	public void parseOrderID() {

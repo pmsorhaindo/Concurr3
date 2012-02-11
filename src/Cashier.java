@@ -127,8 +127,8 @@ public class Cashier implements Runnable {
 		return 0;
 	}
 
-	public InetAddress getCashierAddress() {
-		return cashierAddress;
+	public String getCashierAddress() {
+		return cashierAddress.getHostAddress();
 	}
 
 	public void setCashierAddress(InetAddress cashierAddress) {

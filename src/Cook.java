@@ -64,7 +64,7 @@ public class Cook implements Runnable {
 			out.print("3*" + getCookName()+"*"+ recievedOrderID +"\n");
 			if ((input = in.readLine()) != null){
 			//System.out.println("Cook: " + parseOrderCompleteReturn(input));
-			
+			System.out.println("Cook: " + input);
 			//Parse Order for Cashier details
 			InetAddress targetAddress = null; //TODO
 			int targetPort = 0; //TODO
