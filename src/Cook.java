@@ -98,12 +98,13 @@ public class Cook implements Runnable {
 	
 	public String parseCashierAddress(String input) {
 		String val = input.substring(0,getNextStarPos(input));
-		System.out.println("val: " +val);
+		System.out.println("Address: " +val);
 		return val;
 	}
 	
 	public int parseCashierPort(String input) {
 		String val = input.substring(0,getNextStarPos(input));
+		System.out.println("Port: "+val);
 		int port = Integer.parseInt(val);
 		return port;
 	}

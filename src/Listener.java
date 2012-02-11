@@ -13,6 +13,7 @@ public class Listener implements Runnable {
 	public void run() {
 		
 		try {
+			System.out.println("I'm listening on: " + listenPort);
 			ServerSocket listenServerSocket = new ServerSocket(listenPort);
 			Socket listenSocket = listenServerSocket.accept();	
 			BufferedReader in = new BufferedReader(
