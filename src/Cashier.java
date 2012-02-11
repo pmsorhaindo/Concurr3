@@ -15,8 +15,7 @@ public class Cashier implements Runnable {
 	private int serverPort;
 	private int listenPort;
 	private boolean onDuty;
-	
-	Listener cashierListener;
+	private Listener cashierListener;
 	
 	public Cashier(String nameText,String newServerAddress, String newServerPort){
 		setCashierName(nameText);
@@ -31,7 +30,7 @@ public class Cashier implements Runnable {
 		setListenPort(Cashier.nextPort); 
 		Cashier.nextPort ++;
 		onDuty=true;
-		//setKitchen(kitchenName);
+		
 		serverPort=Integer.parseInt(newServerPort);
 		try{
 		serverAddress = InetAddress.getByName(newServerAddress);

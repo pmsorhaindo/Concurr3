@@ -61,15 +61,20 @@ public class Cook implements Runnable {
 				Random r = new Random();
 				Thread.sleep(r.nextInt(6999)); // random int used for its value as milliseconds between 0 and 6999.
 			}
-			out.print("3*" + getCookName()+"*"+ recievedOrderID +"\n");
+			out.print("6*" + getCookName()+"*"+ recievedOrderID +"\n");
 			if ((input = in.readLine()) != null){
-			//System.out.println("Cook: " + parseOrderCompleteReturn(input));
-			System.out.println("Cook: " + input);
-			//Parse Order for Cashier details
-			InetAddress targetAddress = null; //TODO
-			int targetPort = 0; //TODO
-			Writer toCashier = new Writer(targetAddress,targetPort);
-			
+				//System.out.println("Cook: " + parseOrderCompleteReturn(input));
+				System.out.println("Cook: " + input);
+
+				//Parse Order for Cashier details			
+				InetAddress targetAddress = InetAddress.getByName(parseCashierAddress(input));
+				input = input.substring((getNextStarPos(input)+1),input.length());
+				int targetPort = parseCashierPort(input);
+				input = input.substring((getNextStarPos(input)+1),input.length());
+
+				Writer toCashier = new Writer(targetAddress,targetPort);
+				toCashier.report(input);
+				
 			}
 		}catch(InterruptedException e)
 		{
@@ -91,6 +96,18 @@ public class Cook implements Runnable {
 		return orderPlaced;
    	 }
 	
+	public String parseCashierAddress(String input) {
+		String val = input.substring(0,getNextStarPos(input));
+		System.out.println("val: " +val);
+		return val;
+	}
+	
+	public int parseCashierPort(String input) {
+		String val = input.substring(0,getNextStarPos(input));
+		int port = Integer.parseInt(val);
+		return port;
+	}
+	
 	public String parseOrderCompleteReturn(String inputToParse){
 		String orderPlaced = "Order ";
 		orderPlaced = orderPlaced+ inputToParse.substring(0,getNextStarPos(inputToParse));//order ID
@@ -105,11 +122,6 @@ public class Cook implements Runnable {
 		orderPlaced = orderPlaced + " at " + timeCooked;
 		return orderPlaced;
    	 }
-	
-	public String parseCashierDetails() {
-		//TODO
-		return null;
-	}
 	
 	public int getNextStarPos(String input){
 		for (int i = 0; i<input.length(); i++){

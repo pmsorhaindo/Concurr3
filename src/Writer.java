@@ -16,7 +16,10 @@ public class Writer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public void report(String details) {
+		out.print(details + "\n");
 	}
 	
 	

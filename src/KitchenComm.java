@@ -88,7 +88,15 @@ public class KitchenComm {
     		tempOrder = kitchen.addOrder(author,authorAddress,authorPort);
     		theOutput = tempOrder.deConstructOrder();
     		break;
-
+    	
+    	case 6:
+    		
+    		parseAuthorNameOrderID();
+    		tempOrder = kitchen.completeOrder(author,orderID);
+    		theOutput = tempOrder.getCashierAddress()+"*"+tempOrder.getCashierPort()+"*"
+    				+tempOrder.deConstructOrder();
+    		        	
+        	break;	
     	}
     }
     
