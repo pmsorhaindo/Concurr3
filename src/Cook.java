@@ -64,7 +64,7 @@ public class Cook implements Runnable {
 			out.print("6*" + getCookName()+"*"+ recievedOrderID +"\n");
 			if ((input = in.readLine()) != null){
 				//System.out.println("Cook: " + parseOrderCompleteReturn(input));
-				System.out.println("Cook: " + input);
+				//System.out.println("Cook: " + input);
 
 				//Parse Order for Cashier details			
 				InetAddress targetAddress = InetAddress.getByName(parseCashierAddress(input));
@@ -74,6 +74,7 @@ public class Cook implements Runnable {
 
 				Writer toCashier = new Writer(targetAddress,targetPort);
 				toCashier.report(input);
+				//System.out.println("Cook: I nudged the cashier!");
 				
 			}
 		}catch(InterruptedException e)
@@ -98,13 +99,13 @@ public class Cook implements Runnable {
 	
 	public String parseCashierAddress(String input) {
 		String val = input.substring(0,getNextStarPos(input));
-		System.out.println("Address: " +val);
+		//System.out.println("Address: " +val);
 		return val;
 	}
 	
 	public int parseCashierPort(String input) {
 		String val = input.substring(0,getNextStarPos(input));
-		System.out.println("Port: "+val);
+		//System.out.println("Port: "+val);
 		int port = Integer.parseInt(val);
 		return port;
 	}

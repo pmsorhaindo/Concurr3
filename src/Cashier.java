@@ -25,14 +25,10 @@ public class Cashier implements Runnable {
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		}
-		System.out.println("Grapejelly!1");
 		cashierListener = new Thread(new Listener(Cashier.nextPort));
 		cashierListener.start();
-		System.out.println("Grapejelly!2");
 		setListenPort(Cashier.nextPort); 
 		Cashier.nextPort ++;
-		System.out.println("Grapejelly!3");
-		System.out.println("Grapejelly!4");
 		onDuty=true;
 		
 		serverPort=Integer.parseInt(newServerPort);
